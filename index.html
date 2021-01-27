@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<span>
+    <input class="searchbar" type="text" oninput="adjustSelectItems()" id="userentry">
+    <select class="colorselect" name="couleur" id="col" autocomplete="on">
+        <option value="ROUGE">Rouge</option>
+        <option value="BLEU">Bleu</option>
+        <option value="VERT">Vert</option>
+        <option value="JAUNE">Jaune</option>
+        <option value="NA" id="nothingfound" disabled="true" hidden="true">Nothing was found !</option>
+    </select>
+</span>
+</body>
+</html>
