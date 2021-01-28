@@ -1,7 +1,18 @@
+function changeXButtonStateIfNeeded(userEntry) {
+    var button = document.getElementById("xbutton");
+    if(userEntry.length > 0){
+        button.hidden = false;
+    }
+    else{
+        button.hidden = true;
+    }
+}
+
 function adjustSelectItems(){
     let selectItems = getAllItemsInSelect();
-    let filter = getUserEntry();
-    filterSelectItems(selectItems, filter);
+    let userEntry = getUserEntry();
+    filterSelectItems(selectItems, userEntry);
+    changeXButtonStateIfNeeded(userEntry);
 }
 
 function getAllItemsInSelect(){
@@ -79,11 +90,34 @@ function setNoValueFoundVisibility(matchesFound) {
     }
 }
 
-/* Ajoute le comportement de click au bouton */
+function getSelectedItemIndex(){
+    var selectItems = getAllItemsInSelect();
+    for (var i = 0; i < selectItems.length; ++i){
+        if (selectItems[i].selected === true) return i;
+    }
+    return -1;
+}
+
+function autocompleteUserEntry() {
+    var userEntry = document.getElementById("userentry");
+    var selectItems = getAllItemsInSelect();
+    var selectedIndex = getSelectedItemIndex();
+    console.log("autocompleting user entry : ", selectedIndex);
+    if (selectedIndex !== - 1){
+        userEntry.value = selectItems[selectedIndex].value;
+    }
+}
+
 window.onload=function (){
+    /* Ajoute le comportement de click au bouton */
     document.getElementById("xbutton").addEventListener("click", function(){
         resetUserEntryValue();
         resetItemsComboboxView();
+    })
+
+    /* Ajoute le comportement de click au select */
+    document.getElementById("col").addEventListener("click", function(){
+        autocompleteUserEntry();
     })
 }
 
