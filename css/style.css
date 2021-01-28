@@ -1,10 +1,31 @@
+:root{
+    --x-button: "https://www.flaticon.com/svg/vstatic/svg/458/458595.svg?token=exp=1611795491~hmac=63d831f77dcfa9651d36cad789b4696e";
+}
+
+
+.search_container{
+    display: flex;
+}
+
 .searchbar{
-    width: 100%;
+    width: 99%;
 }
 
 .colorselect{
     display: block;
     width: 100%;
     position: relative;
-    color: red;
+    color: darkgray;
+}
+
+.x_button{
+    width: 20px;
+    height: 20px;
+    background: none;
+    border: none;
+}
+
+.x_button img{
+    width: 100%;
+    content: url("https://icon-library.com/images/x-button-icon/x-button-icon-20.jpg");
 }

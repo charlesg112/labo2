@@ -1,5 +1,3 @@
-/* document.getElementById("userentry").addEventListener("change", adjustSelectItems); */
-
 function adjustSelectItems(){
     let selectItems = getAllItemsInSelect();
     let filter = getUserEntry();
@@ -79,4 +77,35 @@ function setNoValueFoundVisibility(matchesFound) {
     else{
         nothingFoundOption.hidden = true;
     }
+}
+
+/* Ajoute le comportement de click au bouton */
+window.onload=function (){
+    document.getElementById("xbutton").addEventListener("click", function(){
+        resetUserEntryValue();
+        resetItemsComboboxView();
+    })
+}
+
+function resetUserEntryValue(){
+    var userEntry = document.getElementById("userentry");
+    userEntry.value = "";
+}
+
+function resetItemsComboboxView(){
+    var selectItems = getAllItemsInSelect();
+    var qteOfEntries = selectItems.length;
+    console.log("Entries : ", qteOfEntries);
+    for (var i = 0; i < selectItems.length; ++i) {
+        if (selectItems[i].id === "nothingfound") {
+            selectItems[i].hidden = true;
+            console.log("nothing found !");
+        }
+        else{
+            selectItems[i].hidden = false;
+        }
+    }
+    setValidSelectedItem(selectItems, "");
+    setSelectDropDownToCorrectSize(qteOfEntries - 1);
+
 }
