@@ -29,3 +29,8 @@
     width: 100%;
     content: url("https://icon-library.com/images/x-button-icon/x-button-icon-20.jpg");
 }
+
+.hidden{
+    color: aqua;
+    display: none;
+}

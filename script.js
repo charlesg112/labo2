@@ -1,3 +1,15 @@
+function hideSelectBox(){
+    console.log("Select set to hidden");
+    var select = document.getElementById("col");
+    select.classList.add("hidden");
+}
+
+function showSelectBox(){
+    console.log("Select set to visible");
+    var select = document.getElementById("col");
+    select.classList.remove("hidden");
+}
+
 function changeXButtonStateIfNeeded(userEntry) {
     var button = document.getElementById("xbutton");
     if(userEntry.length > 0){
@@ -119,6 +131,15 @@ window.onload=function (){
     document.getElementById("col").addEventListener("click", function(){
         autocompleteUserEntry();
     })
+
+    document.getElementById("grosseBarre").addEventListener("focusin", function(){
+        showSelectBox();
+    })
+    document.getElementById("grosseBarre").addEventListener("focusout", function(event){
+        if(event.relatedTarget === null || event.relatedTarget.id !== "col"){
+            hideSelectBox();
+        }
+    })
 }
 
 function resetUserEntryValue(){
@@ -129,11 +150,9 @@ function resetUserEntryValue(){
 function resetItemsComboboxView(){
     var selectItems = getAllItemsInSelect();
     var qteOfEntries = selectItems.length;
-    console.log("Entries : ", qteOfEntries);
     for (var i = 0; i < selectItems.length; ++i) {
         if (selectItems[i].id === "nothingfound") {
             selectItems[i].hidden = true;
-            console.log("nothing found !");
         }
         else{
             selectItems[i].hidden = false;
@@ -141,5 +160,4 @@ function resetItemsComboboxView(){
     }
     setValidSelectedItem(selectItems, "");
     setSelectDropDownToCorrectSize(qteOfEntries - 1);
-
 }
