@@ -2,6 +2,9 @@
     --x-button: "https://www.flaticon.com/svg/vstatic/svg/458/458595.svg?token=exp=1611795491~hmac=63d831f77dcfa9651d36cad789b4696e";
 }
 
+.container{
+    width: 300px;
+}
 
 .search_container{
     display: flex;

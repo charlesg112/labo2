@@ -70,9 +70,11 @@ function setValidSelectedItem(selectItems, filter) {
 
 function setSelectDropDownToCorrectSize(itemsQte){
     var selectBox = document.getElementById("col");
-    if (itemsQte > 0){
+    if (itemsQte > maxElements){
+        selectBox.size = maxElements;
+    }
+    else if (itemsQte > 0){
         selectBox.size = itemsQte;
-
     }
     else{
         selectBox.size = 1;
@@ -115,9 +117,10 @@ function autocompleteUserEntry() {
     var selectItems = getAllItemsInSelect();
     var selectedIndex = getSelectedItemIndex();
     console.log("autocompleting user entry : ", selectedIndex);
-    if (selectedIndex !== - 1){
+    if (selectedIndex !== - 1 && selectItems[selectedIndex].id !== "nothingfound"){
         userEntry.value = selectItems[selectedIndex].value;
     }
+    changeXButtonStateIfNeeded(userEntry.value);
 }
 
 window.onload=function (){
@@ -145,6 +148,7 @@ window.onload=function (){
 function resetUserEntryValue(){
     var userEntry = document.getElementById("userentry");
     userEntry.value = "";
+    changeXButtonStateIfNeeded(userEntry.value);
 }
 
 function resetItemsComboboxView(){
